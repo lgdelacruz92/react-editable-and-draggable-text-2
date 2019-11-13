@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import BaseText from "./Text/ basetext";
 
 function App() {
+  const [edit, setEdit] = React.useState(false);
+  const textRef = React.useRef();
+
+  const textData = {
+    x: 50,
+    y: 60,
+    fontSize: 50,
+    fontFamily: "sans-serif",
+    fontWeight: "Bold",
+    text: "Hello World"
+  };
+
+  React.useEffect(() => {
+    const onClick = e => {
+      if (e.target !== textRef.current) {
+        setEdit(false);
+      }
+    };
+
+    document.addEventListener("click", onClick);
+    return () => {
+      document.removeEventListener("click", onClick);
+    };
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BaseText
+        ref={textRef}
+        textData={textData}
+        edit={edit}
+        onClick={() => setEdit(true)}
+      />
     </div>
   );
 }

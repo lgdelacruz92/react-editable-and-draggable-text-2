@@ -4,19 +4,24 @@ import * as MaterialUI from "@material-ui/core";
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
     text: {
-      outline: "none"
+      outline: "none",
+      display: "inline-block",
+      transform: props => `translate(${props.x}px, ${props.y}px)`,
+      fontSize: props => props.fontSize,
+      fontFamily: props => props.fontFamily,
+      fontWeight: props => props.fontWeight,
+      cursor: "text"
     }
   };
 });
 
-const BaseText = props => {
+const BaseText = React.forwardRef((props, ref) => {
   const { textData, className, onClick, edit } = props;
-  const spanRef = React.useRef(null);
-  const classes = useStyles();
+  const classes = useStyles(textData);
 
   return (
     <span
-      ref={spanRef}
+      ref={ref}
       id="text-draggable"
       onClick={onClick}
       className={`${classes.text} ${className || ""}`}
@@ -26,6 +31,6 @@ const BaseText = props => {
       {textData.text}
     </span>
   );
-};
+});
 
 export default BaseText;
