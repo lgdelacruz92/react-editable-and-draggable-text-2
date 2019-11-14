@@ -12,7 +12,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
       width: "2.0em",
       height: "2.2em",
       marginBottom: 3,
-      borderRadius: 5
+      borderRadius: 5,
+      outline: "none"
     }
   };
 });

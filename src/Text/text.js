@@ -10,8 +10,33 @@ import TextControls from "./textcontrols";
 import "./text.css";
 
 const Text = props => {
+  const { textData } = props;
+  if (typeof textData.id === "undefined") {
+    throw Error(
+      "Text id is required. Please add a Text id i.e { id: unique-id, ...}"
+    );
+  }
   const [edit, setEdit] = React.useState(false);
-  const [textData, setTextData] = React.useState(props.textData);
+  const [theTextData, setTextData] = React.useState({
+    id: textData.id,
+    x: textData.x || 0,
+    y: textData.y || 0,
+    fontSize: textData.fontSize || 16,
+    fontFamily: textData.fontFamily || "sans-serif",
+    fontWeight: textData.fontWeight || "normal",
+    fontStyle: textData.fontStyle || "normal",
+    textDecoration: textData.textDecoration || "none",
+    textAlign: textData.textData || "center",
+    text: textData.text || "Default Text",
+    color: textData.color || "black",
+    event: textData.event || {
+      x: 0,
+      y: 0,
+      originalX: 0,
+      originalY: 0,
+      status: "mouse-up"
+    }
+  });
 
   const textRef = React.useRef();
   const borderRef = React.useRef();
@@ -50,51 +75,56 @@ const Text = props => {
       <TextControls
         onBoldClick={() => {
           setTextData({
-            ...textData,
-            fontWeight: textData.fontWeight === "bold" ? "normal" : "bold"
+            ...theTextData,
+            fontWeight: theTextData.fontWeight === "bold" ? "normal" : "bold"
           });
         }}
         onItalicClick={() => {
           setTextData({
-            ...textData,
-            fontStyle: textData.fontStyle === "italic" ? "normal" : "italic"
+            ...theTextData,
+            fontStyle: theTextData.fontStyle === "italic" ? "normal" : "italic"
           });
         }}
         onUnderlineClick={() => {
           setTextData({
-            ...textData,
+            ...theTextData,
             textDecoration:
-              textData.textDecoration === "underline" ? "none" : "underline"
+              theTextData.textDecoration === "underline" ? "none" : "underline"
           });
         }}
         onFontSizeSelect={e => {
           setTextData({
-            ...textData,
+            ...theTextData,
             fontSize: parseInt(e.target.value)
           });
         }}
         onFontFamilySelect={e => {
           setTextData({
-            ...textData,
+            ...theTextData,
             fontFamily: e.target.value
           });
         }}
         onFontColorChange={e => {
           setTextData({
-            ...textData,
+            ...theTextData,
             color: e.target.value
           });
         }}
-        textData={textData}
+        textData={theTextData}
         edit={edit}
       />
-      <Border edit={edit} ref={borderRef} textData={textData} color="lightgrey">
+      <Border
+        edit={edit}
+        ref={borderRef}
+        textData={theTextData}
+        color="lightgrey"
+      >
         <BaseText
           ref={textRef}
-          textData={textData}
+          textData={theTextData}
           edit={edit}
           onClick={() => setEdit(true)}
-          onChange={e => setTextData({ ...textData, text: e.target.value })}
+          onChange={e => setTextData({ ...theTextData, text: e.target.value })}
         />
       </Border>
     </div>
