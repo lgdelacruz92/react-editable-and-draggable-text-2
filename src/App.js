@@ -14,6 +14,7 @@ function App() {
     textDecoration: "none",
     textAlign: "center",
     text: "Hello World",
+    color: "black",
     event: {
       x: 0,
       y: 0,

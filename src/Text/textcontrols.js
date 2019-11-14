@@ -4,6 +4,7 @@ import clsx from "clsx";
 import FontStyles from "./fontstyles";
 import FontSizeSelect from "./fontsizeselect";
 import FontFamilySelect from "./fontfamilyselect";
+import FontColor from "./fontcolor";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -35,6 +36,7 @@ const TextControls = props => {
       <FontStyles {...props} />
       <FontSizeSelect {...props} />
       <FontFamilySelect {...props} />
+      <FontColor {...props} />
     </div>
   );
 };

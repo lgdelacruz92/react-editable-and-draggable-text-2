@@ -79,6 +79,12 @@ const Text = props => {
             fontFamily: e.target.value
           });
         }}
+        onFontColorChange={e => {
+          setTextData({
+            ...textData,
+            color: e.target.value
+          });
+        }}
         textData={textData}
         edit={edit}
       />

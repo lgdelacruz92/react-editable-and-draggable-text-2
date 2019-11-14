@@ -12,6 +12,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
       fontStyle: props => props.fontStyle,
       textDecoration: props => props.textDecoration,
       textAlign: props => props.textAlign,
+      color: props => props.color,
       cursor: "text",
       border: "none",
       resize: "none"
