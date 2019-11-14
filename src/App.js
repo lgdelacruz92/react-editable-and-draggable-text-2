@@ -56,13 +56,10 @@ function App() {
       });
     };
     const onMouseUp = e => {
-      console.log("Mouse up happened");
       setTextData(s => ({ ...s, event: { x: 0, y: 0, status: "mouse-up" } }));
     };
 
     const onClick = e => {
-      console.log("Click up happened");
-
       if (e.target !== textRef.current && e.target !== borderRef.current) {
         setEdit(false);
       }
