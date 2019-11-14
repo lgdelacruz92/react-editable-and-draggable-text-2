@@ -7,12 +7,13 @@ const useStyles = MaterialUI.makeStyles(theme => {
       transform: props => {
         return `translate(${props.textData.x}px, ${props.textData.y}px)`;
       },
-      padding: 10,
+      padding: 5,
       display: "inline-block"
     },
     theborder: {
       border: props => `2px solid ${props.color}`,
-      cursor: "move"
+      cursor: "move",
+      borderRadius: 5
     }
   };
 });
@@ -24,7 +25,9 @@ const Border = React.forwardRef((props, ref) => {
   return (
     <div
       ref={ref}
-      className={`${classes.default} ${edit ? classes.theborder : ""}`}
+      className={`${textData.id} ${classes.default} ${
+        edit ? classes.theborder : ""
+      }`}
     >
       {children}
     </div>

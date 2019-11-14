@@ -7,16 +7,20 @@ import {
   handleMouseMove,
   handleMouseUp
 } from "./Text/eventHandler";
+import TextControls from "./Text/textcontrols";
 
 function App() {
   const [edit, setEdit] = React.useState(false);
   const [textData, setTextData] = React.useState(() => {
     return {
+      id: "unique-id-123",
       x: 50,
       y: 60,
       fontSize: 20,
       fontFamily: "sans-serif",
-      fontWeight: "Bold",
+      fontWeight: "bold",
+      fontStyle: "italic",
+      textDecoration: "underline",
       textAlign: "center",
       text: "Hello World",
       event: {
@@ -46,9 +50,7 @@ function App() {
     };
 
     const onClick = e => {
-      if (e.target !== textRef.current && e.target !== borderRef.current) {
-        setEdit(false);
-      }
+      setEdit(s => e.target.classList.contains(textData.id));
     };
 
     document.addEventListener("mousedown", onMouseDown);
@@ -61,10 +63,20 @@ function App() {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
     };
-  }, []);
+  }, [textData.id]);
 
   return (
     <div className="App">
+      <TextControls
+        onBoldClick={() => {
+          setTextData({
+            ...textData,
+            fontWeight: textData.fontWeight === "bold" ? "normal" : "bold"
+          });
+        }}
+        textData={textData}
+        edit={edit}
+      />
       <Border
         edit={edit}
         ref={borderRef}

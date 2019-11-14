@@ -9,6 +9,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
       fontSize: props => props.fontSize,
       fontFamily: props => props.fontFamily,
       fontWeight: props => props.fontWeight,
+      fontStyle: props => props.fontStyle,
+      textDecoration: props => props.textDecoration,
       textAlign: props => props.textAlign,
       cursor: "text",
       border: "none",
@@ -27,7 +29,7 @@ const BaseText = React.forwardRef((props, ref) => {
       id="text-draggable"
       onClick={onClick}
       onChange={onChange}
-      className={`${classes.text} ${className || ""}`}
+      className={`${textData.id} ${classes.text} ${className || ""}`}
       defaultValue={textData.text}
     ></MaterialUI.TextareaAutosize>
   );
