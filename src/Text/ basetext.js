@@ -6,30 +6,29 @@ const useStyles = MaterialUI.makeStyles(theme => {
     text: {
       outline: "none",
       display: "inline-block",
-      transform: props => `translate(${props.x}px, ${props.y}px)`,
       fontSize: props => props.fontSize,
       fontFamily: props => props.fontFamily,
       fontWeight: props => props.fontWeight,
-      cursor: "text"
+      cursor: "text",
+      border: "none",
+      resize: "none"
     }
   };
 });
 
 const BaseText = React.forwardRef((props, ref) => {
-  const { textData, className, onClick, edit } = props;
+  const { textData, className, onClick, onChange } = props;
   const classes = useStyles(textData);
 
   return (
-    <span
+    <MaterialUI.TextareaAutosize
       ref={ref}
       id="text-draggable"
       onClick={onClick}
+      onChange={onChange}
       className={`${classes.text} ${className || ""}`}
-      contentEditable={edit}
-      suppressContentEditableWarning={true}
-    >
-      {textData.text}
-    </span>
+      defaultValue={textData.text}
+    ></MaterialUI.TextareaAutosize>
   );
 });
 
