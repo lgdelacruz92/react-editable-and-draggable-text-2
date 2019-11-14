@@ -74,15 +74,23 @@ function App() {
             fontWeight: textData.fontWeight === "bold" ? "normal" : "bold"
           });
         }}
+        onItalicClick={() => {
+          setTextData({
+            ...textData,
+            fontStyle: textData.fontStyle === "italic" ? "normal" : "italic"
+          });
+        }}
+        onUnderlineClick={() => {
+          setTextData({
+            ...textData,
+            textDecoration:
+              textData.textDecoration === "underline" ? "none" : "underline"
+          });
+        }}
         textData={textData}
         edit={edit}
       />
-      <Border
-        edit={edit}
-        ref={borderRef}
-        textData={textData}
-        color="lightcoral"
-      >
+      <Border edit={edit} ref={borderRef} textData={textData} color="lightgrey">
         <BaseText
           ref={textRef}
           textData={textData}
