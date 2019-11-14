@@ -2,6 +2,11 @@ import React from "react";
 import "./App.css";
 import BaseText from "./Text/ basetext";
 import Border from "./Text/border";
+import {
+  handleMouseDown,
+  handleMouseMove,
+  handleMouseUp
+} from "./Text/eventHandler";
 
 function App() {
   const [edit, setEdit] = React.useState(false);
@@ -30,33 +35,14 @@ function App() {
   React.useEffect(() => {
     const onMouseDown = e => {
       if (e.target === borderRef.current) {
-        setTextData(s => ({
-          ...s,
-          event: {
-            x: e.clientX,
-            y: e.clientY,
-            originalX: s.x,
-            originalY: s.y,
-            status: "mouse-down"
-          }
-        }));
+        setTextData(s => handleMouseDown(s, e));
       }
     };
     const onMouseMove = e => {
-      setTextData(s => {
-        if (s.event.status === "mouse-down") {
-          return {
-            ...s,
-            x: e.clientX - s.event.x + s.event.originalX,
-            y: e.clientY - s.event.y + s.event.originalY
-          };
-        } else {
-          return { ...s };
-        }
-      });
+      setTextData(s => handleMouseMove(s, e));
     };
     const onMouseUp = e => {
-      setTextData(s => ({ ...s, event: { x: 0, y: 0, status: "mouse-up" } }));
+      setTextData(s => handleMouseUp(s, e));
     };
 
     const onClick = e => {
@@ -79,7 +65,12 @@ function App() {
 
   return (
     <div className="App">
-      <Border edit={edit} ref={borderRef} textData={textData} color="red">
+      <Border
+        edit={edit}
+        ref={borderRef}
+        textData={textData}
+        color="lightcoral"
+      >
         <BaseText
           ref={textRef}
           textData={textData}
