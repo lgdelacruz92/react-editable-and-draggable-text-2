@@ -3,12 +3,14 @@ import "./App.css";
 import Text from "./Text/text";
 
 function App() {
-  const texts = [{ id: "unique-123" }, { id: "unique-124" }];
-
+  let texts = [];
+  for (let i = 0; i < 30; i++) {
+    texts.push({ id: `unique-${i}` });
+  }
   return (
     <div className="App">
       {texts.map(text => (
-        <Text textData={text} />
+        <Text textData={text} key={text.id} />
       ))}
     </div>
   );

@@ -32,8 +32,8 @@ const FontSizeSelect = props => {
         className={clsx(textData.id, classes.select)}
         onChange={onFontSizeSelect}
       >
-        {options.map(option => (
-          <option className={clsx(textData.id)} value={option}>
+        {options.map((option, i) => (
+          <option key={i} className={clsx(textData.id)} value={option}>
             {option}
           </option>
         ))}

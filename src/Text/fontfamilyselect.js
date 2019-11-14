@@ -10,7 +10,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
       marginLeft: 3
     },
     select: {
-      height: "2.5em",
+      height: "1.7em",
       outline: "none",
       marginBottom: 3
     }
@@ -21,18 +21,28 @@ const FontFamilySelect = props => {
   const { textData, onFontFamilySelect } = props;
   const classes = useStyles();
   return (
-    <div className={clsx(classes.fontSizeSelection, textData.id)}>
-      <select
-        className={clsx(textData.id, classes.select)}
+    <MaterialUI.FormControl
+      variant="outlined"
+      className={clsx(classes.fontSizeSelection, textData.id)}
+    >
+      <MaterialUI.Select
         onChange={onFontFamilySelect}
+        autoWidth
+        value={"'Roboto', sans-serif"}
+        className={clsx(textData.id, classes.select)}
       >
-        {Fonts.fonts.map(font => (
-          <option selected={font.name === "Roboto"} value={font.style}>
+        {Fonts.fonts.map((font, i) => (
+          <MaterialUI.MenuItem
+            key={i}
+            selected={font.name === "Roboto"}
+            style={{ fontFamily: font.style }}
+            value={font.style}
+          >
             {font.name}
-          </option>
+          </MaterialUI.MenuItem>
         ))}
-      </select>
-    </div>
+      </MaterialUI.Select>
+    </MaterialUI.FormControl>
   );
 };
 

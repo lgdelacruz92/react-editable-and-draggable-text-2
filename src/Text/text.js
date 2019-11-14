@@ -48,10 +48,14 @@ const Text = props => {
       }
     };
     const onMouseMove = e => {
-      setTextData(s => handleMouseMove(s, e));
+      if (theTextData.event.status === "mouse-down") {
+        setTextData(s => handleMouseMove(s, e));
+      }
     };
     const onMouseUp = e => {
-      setTextData(s => handleMouseUp(s, e));
+      if (theTextData.event.status === "mouse-down") {
+        setTextData(s => handleMouseUp(s, e));
+      }
     };
 
     const onClick = e => {
@@ -68,7 +72,7 @@ const Text = props => {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
     };
-  }, [textData.id]);
+  }, [textData.id, theTextData.event.status]);
 
   return (
     <div className="App">

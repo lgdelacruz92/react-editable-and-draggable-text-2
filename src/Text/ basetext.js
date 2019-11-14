@@ -1,5 +1,6 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
+import TextareaAutosize from "react-autosize-textarea";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -15,7 +16,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
       color: props => props.color,
       cursor: "text",
       border: "none",
-      resize: "none"
+      resize: "none",
+      background: "transparent"
     }
   };
 });
@@ -25,14 +27,14 @@ const BaseText = React.forwardRef((props, ref) => {
   const classes = useStyles(textData);
 
   return (
-    <MaterialUI.TextareaAutosize
+    <TextareaAutosize
       ref={ref}
       id="text-draggable"
       onClick={onClick}
       onChange={onChange}
       className={`${textData.id} ${classes.text} ${className || ""}`}
       defaultValue={textData.text}
-    ></MaterialUI.TextareaAutosize>
+    ></TextareaAutosize>
   );
 });
 
