@@ -9,6 +9,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
       fontSize: props => props.fontSize,
       fontFamily: props => props.fontFamily,
       fontWeight: props => props.fontWeight,
+      textAlign: props => props.textAlign,
       cursor: "text",
       border: "none",
       resize: "none"

@@ -7,11 +7,11 @@ const useStyles = MaterialUI.makeStyles(theme => {
       transform: props => {
         return `translate(${props.textData.x}px, ${props.textData.y}px)`;
       },
-      padding: 10
+      padding: 10,
+      display: "inline-block"
     },
     theborder: {
       border: props => `2px solid ${props.color}`,
-      display: "inline-block",
       cursor: "move"
     }
   };

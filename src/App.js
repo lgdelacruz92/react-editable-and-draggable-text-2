@@ -9,10 +9,18 @@ function App() {
     return {
       x: 50,
       y: 60,
-      fontSize: 50,
+      fontSize: 20,
       fontFamily: "sans-serif",
       fontWeight: "Bold",
-      text: "Hello World"
+      textAlign: "center",
+      text: "Hello World",
+      event: {
+        x: 0,
+        y: 0,
+        originalX: 0,
+        originalY: 0,
+        status: "mouse-up"
+      }
     };
   });
 
@@ -20,15 +28,55 @@ function App() {
   const borderRef = React.useRef();
 
   React.useEffect(() => {
+    const onMouseDown = e => {
+      if (e.target === borderRef.current) {
+        setTextData(s => ({
+          ...s,
+          event: {
+            x: e.clientX,
+            y: e.clientY,
+            originalX: s.x,
+            originalY: s.y,
+            status: "mouse-down"
+          }
+        }));
+      }
+    };
+    const onMouseMove = e => {
+      setTextData(s => {
+        if (s.event.status === "mouse-down") {
+          return {
+            ...s,
+            x: e.clientX - s.event.x + s.event.originalX,
+            y: e.clientY - s.event.y + s.event.originalY
+          };
+        } else {
+          return { ...s };
+        }
+      });
+    };
+    const onMouseUp = e => {
+      console.log("Mouse up happened");
+      setTextData(s => ({ ...s, event: { x: 0, y: 0, status: "mouse-up" } }));
+    };
+
     const onClick = e => {
-      if (e.target !== textRef.current) {
+      console.log("Click up happened");
+
+      if (e.target !== textRef.current && e.target !== borderRef.current) {
         setEdit(false);
       }
     };
 
+    document.addEventListener("mousedown", onMouseDown);
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
     document.addEventListener("click", onClick);
     return () => {
       document.removeEventListener("click", onClick);
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
     };
   }, []);
 
