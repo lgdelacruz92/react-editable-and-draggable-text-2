@@ -87,6 +87,12 @@ function App() {
               textData.textDecoration === "underline" ? "none" : "underline"
           });
         }}
+        onFontSizeSelect={e => {
+          setTextData({
+            ...textData,
+            fontSize: parseInt(e.target.value)
+          });
+        }}
         textData={textData}
         edit={edit}
       />
