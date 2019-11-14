@@ -9,9 +9,9 @@ function App() {
     y: 60,
     fontSize: 20,
     fontFamily: "sans-serif",
-    fontWeight: "bold",
-    fontStyle: "italic",
-    textDecoration: "underline",
+    fontWeight: "normal",
+    fontStyle: "normal",
+    textDecoration: "none",
     textAlign: "center",
     text: "Hello World",
     event: {

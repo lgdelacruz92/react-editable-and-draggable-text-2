@@ -7,6 +7,7 @@ import {
   handleMouseUp
 } from "./eventHandler";
 import TextControls from "./textcontrols";
+import "./text.css";
 
 const Text = props => {
   const [edit, setEdit] = React.useState(false);
@@ -70,6 +71,12 @@ const Text = props => {
           setTextData({
             ...textData,
             fontSize: parseInt(e.target.value)
+          });
+        }}
+        onFontFamilySelect={e => {
+          setTextData({
+            ...textData,
+            fontFamily: e.target.value
           });
         }}
         textData={textData}
