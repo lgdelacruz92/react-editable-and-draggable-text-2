@@ -1,12 +1,15 @@
 {
-  "name": "editable-text",
-  "version": "0.1.0",
-  "private": true,
+  "name": "react-editable-text",
+  "version": "1.0.1",
+  "license": "MIT",
+  "author": "lgdelacruz92",
+  "main": "dist/index.js",
+  "description": "This is a library that allows to have a text that is draggable and editable",
+  "repository": "lgdelacruz92/react-editable-text",
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "clsx": "^1.0.4",
     "react": "^16.11.0",
-    "react-autosize-textarea": "^7.0.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0"
   },
@@ -15,6 +18,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.6.1",
+    "clsx": "^1.0.4",
+    "prop-types": "^15.5.4",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "3.2.0",
+    "typescript": "^3.7.2"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +42,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "@material-ui/core": "^4.6.1",
+    "clsx": "^1.0.4",
+    "prop-types": "^15.5.4",
+    "react-image-drag-and-scale": "^1.0.10",
+    "rollup": "^1.27.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "typescript": "^3.7.2"
   }
 }
