@@ -3,15 +3,12 @@ import "./App.css";
 import Text from "./Text/text";
 
 function App() {
-  let texts = [];
-  for (let i = 0; i < 400; i++) {
-    texts.push({ id: `unique-${i}` });
-  }
+  let texts = { id: "unique-1" };
+  const textRef = React.useRef();
+
   return (
     <div className="App">
-      {texts.map(text => (
-        <Text textData={text} key={text.id} />
-      ))}
+      <Text textData={texts} onUpdate={() => {}} ref={textRef} />
     </div>
   );
 }

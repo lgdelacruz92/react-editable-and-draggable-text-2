@@ -4,9 +4,6 @@ import * as MaterialUI from "@material-ui/core";
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
     default: {
-      transform: props => {
-        return `translate(${props.textData.x}px, ${props.textData.y}px)`;
-      },
       padding: 5,
       display: "inline-block"
     },

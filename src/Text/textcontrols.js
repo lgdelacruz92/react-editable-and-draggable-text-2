@@ -9,9 +9,6 @@ import FontColor from "./fontcolor";
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
     textControls: {
-      transform: props => {
-        return `translate(${props.textData.x}px, ${props.textData.y}px)`;
-      },
       display: "flex",
       alignItems: "center"
     },

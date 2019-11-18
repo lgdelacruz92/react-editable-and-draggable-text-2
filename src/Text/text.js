@@ -1,16 +1,23 @@
 import React from "react";
 import BaseText from "./basetext";
 import Border from "./border";
-import {
-  handleMouseDown,
-  handleMouseMove,
-  handleMouseUp
-} from "./eventHandler";
 import TextControls from "./textcontrols";
-import "./text.css";
+import * as MaterialUI from "@material-ui/core";
+const translate = (x, y) => {
+  return `translate(${x}px, ${y}px)`;
+};
 
-const Text = props => {
-  const { textData } = props;
+const useStyles = MaterialUI.makeStyles(theme => {
+  return {
+    text: {
+      position: "absolute",
+      transform: props => translate(props.x, props.y)
+    }
+  };
+});
+
+const Text = React.forwardRef((props, ref) => {
+  const { textData, onUpdate } = props;
   if (typeof textData.id === "undefined") {
     throw Error(
       "Text id is required. Please add a Text id i.e { id: unique-id, ...}"
@@ -37,6 +44,7 @@ const Text = props => {
     text: textData.text || "Default Text",
     color: textData.color || "black"
   });
+  const classes = useStyles(theTextData);
 
   const textRef = React.useRef();
   const borderRef = React.useRef();
@@ -82,10 +90,26 @@ const Text = props => {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
     };
-  }, [textData.id, event.status]);
+  }, [
+    textData.id,
+    event.status,
+    event.originalX,
+    event.originalY,
+    event.x,
+    event.y,
+    theTextData.x,
+    theTextData.y
+  ]);
+
+  React.useEffect(() => {
+    if (textRef) {
+      ref.current = textRef.current.getBoundingClientRect();
+      onUpdate();
+    }
+  });
 
   return (
-    <div className="App">
+    <div className={classes.text}>
       <TextControls
         onBoldClick={() => {
           setTextData({
@@ -142,6 +166,6 @@ const Text = props => {
       </Border>
     </div>
   );
-};
+});
 
 export default Text;
