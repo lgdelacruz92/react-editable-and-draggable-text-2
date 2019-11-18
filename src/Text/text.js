@@ -1,5 +1,5 @@
 import React from "react";
-import BaseText from "./ basetext";
+import BaseText from "./basetext";
 import Border from "./border";
 import {
   handleMouseDown,
@@ -44,7 +44,6 @@ const Text = props => {
   React.useEffect(() => {
     const onMouseDown = e => {
       if (e.target === borderRef.current && event.status === "mouse-up") {
-        console.log("mouse down");
         setEvent({
           x: e.clientX,
           y: e.clientY,
@@ -139,7 +138,6 @@ const Text = props => {
           textData={theTextData}
           edit={edit}
           onClick={() => setEdit(true)}
-          onChange={e => setTextData({ ...theTextData, text: e.target.value })}
         />
       </Border>
     </div>
