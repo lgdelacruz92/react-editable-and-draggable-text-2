@@ -17,6 +17,13 @@ const Text = props => {
     );
   }
   const [edit, setEdit] = React.useState(false);
+  const [event, setEvent] = React.useState({
+    x: 0,
+    y: 0,
+    originalX: 0,
+    originalY: 0,
+    status: "mouse-up"
+  });
   const [theTextData, setTextData] = React.useState({
     id: textData.id,
     x: textData.x || 0,
@@ -28,14 +35,7 @@ const Text = props => {
     textDecoration: textData.textDecoration || "none",
     textAlign: textData.textData || "center",
     text: textData.text || "Default Text",
-    color: textData.color || "black",
-    event: textData.event || {
-      x: 0,
-      y: 0,
-      originalX: 0,
-      originalY: 0,
-      status: "mouse-up"
-    }
+    color: textData.color || "black"
   });
 
   const textRef = React.useRef();
@@ -43,18 +43,29 @@ const Text = props => {
 
   React.useEffect(() => {
     const onMouseDown = e => {
-      if (e.target === borderRef.current) {
-        setTextData(s => handleMouseDown(s, e));
+      if (e.target === borderRef.current && event.status === "mouse-up") {
+        console.log("mouse down");
+        setEvent({
+          x: e.clientX,
+          y: e.clientY,
+          originalX: theTextData.x,
+          originalY: theTextData.y,
+          status: "mouse-down"
+        });
       }
     };
     const onMouseMove = e => {
-      if (theTextData.event.status === "mouse-down") {
-        setTextData(s => handleMouseMove(s, e));
+      if (event.status === "mouse-down") {
+        setTextData(s => ({
+          ...s,
+          x: event.originalX + e.clientX - event.x,
+          y: event.originalY + e.clientY - event.y
+        }));
       }
     };
     const onMouseUp = e => {
-      if (theTextData.event.status === "mouse-down") {
-        setTextData(s => handleMouseUp(s, e));
+      if (event.status === "mouse-down") {
+        setEvent(s => ({ ...s, status: "mouse-up" }));
       }
     };
 
@@ -72,7 +83,7 @@ const Text = props => {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
     };
-  }, [textData.id, theTextData.event.status]);
+  }, [textData.id, event.status]);
 
   return (
     <div className="App">
