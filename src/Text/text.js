@@ -102,7 +102,7 @@ const Text = React.forwardRef((props, ref) => {
   ]);
 
   React.useEffect(() => {
-    if (textRef) {
+    if (textRef && ref) {
       ref.current = textRef.current.getBoundingClientRect();
       onUpdate();
     }
