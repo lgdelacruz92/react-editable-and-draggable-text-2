@@ -1,11 +1,11 @@
 {
-  "name": "react-editable-text",
+  "name": "react-editable-and-draggable-text-2",
   "version": "1.0.1",
   "license": "MIT",
-  "author": "lgdelacruz92",
+  "author": "lgdelacruz",
   "main": "dist/index.js",
   "description": "This is a library that allows to have a text that is draggable and editable",
-  "repository": "lgdelacruz92/react-editable-text",
+  "repository": "lgdelacruz92/react-editable-and-draggable-text-2",
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "clsx": "^1.0.4",
