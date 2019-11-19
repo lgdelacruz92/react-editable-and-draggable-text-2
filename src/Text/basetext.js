@@ -25,8 +25,6 @@ const BaseText = React.forwardRef((props, ref) => {
   const { textData, className, onClick, edit } = props;
   const classes = useStyles(textData);
 
-  console.log("Base text edit", edit);
-
   return (
     <span
       ref={ref}

@@ -1,6 +1,6 @@
 {
   "name": "react-editable-and-draggable-text-2",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "license": "MIT",
   "author": "lgdelacruz",
   "main": "dist/index.js",
@@ -20,13 +20,13 @@
     "eject": "react-scripts eject"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.6.1",
+    "@material-ui/core": "^4.x",
     "clsx": "^1.0.4",
-    "prop-types": "^15.5.4",
+    "prop-types": "^15.x",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.x"
   },
   "eslintConfig": {
     "extends": "react-app"

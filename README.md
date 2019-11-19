@@ -43,7 +43,7 @@ export default App;
 
 # Version Update
 
-## v1.0.0
+## v1.1.3
 
 > First release. If you find issues, please post an issue on the github
 
