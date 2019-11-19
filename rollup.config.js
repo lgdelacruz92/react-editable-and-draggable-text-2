@@ -1,4 +1,5 @@
 import babel from "rollup-plugin-babel";
+import json from "@rollup/plugin-json";
 
 export default [
   {
@@ -8,11 +9,12 @@ export default [
       file: "dist/index.js",
       format: "es"
     },
-    external: ["react", "@material-core", "clsx"],
+    external: ["react", "@material-ui/core", "clsx"],
     plugins: [
       babel({
         exclude: "node_modules/.**"
-      })
+      }),
+      json()
     ]
   }
 ];
