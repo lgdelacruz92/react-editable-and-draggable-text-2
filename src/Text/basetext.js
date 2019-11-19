@@ -22,8 +22,10 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const BaseText = React.forwardRef((props, ref) => {
-  const { textData, className, onClick } = props;
+  const { textData, className, onClick, edit } = props;
   const classes = useStyles(textData);
+
+  console.log("Base text edit", edit);
 
   return (
     <span
@@ -31,7 +33,7 @@ const BaseText = React.forwardRef((props, ref) => {
       id="text-draggable"
       onClick={onClick}
       className={`${textData.id} ${classes.text} ${className || ""}`}
-      contentEditable={true}
+      contentEditable={edit}
       suppressContentEditableWarning={true}
     >
       {textData.text}
